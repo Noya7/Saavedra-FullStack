@@ -18,7 +18,7 @@ app.use(errorHandler)
 
 const bootServer = async () => {
     try {
-        // await mongoose.connect(process.env.MONGO_URI);
+        await mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.rtdordu.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`);
         app.listen(process.env.PORT || 3000, () => console.log(SUCCCESS_STR))
     } catch (err) {
         console.error(ERROR_OBJ.headline, err.message);

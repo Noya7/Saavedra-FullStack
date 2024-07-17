@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-const HttpError = require('../models/http-error');
+const HttpError = require('../models/Http-Error');
 
 const checkAuth = (req, res, next) => {
     try {
-        if(!req.cookies.token) throw new HttpError("No estas autorizad@ para acceder a esta ruta.")
+        if(!req.cookies.token) throw new HttpError("No estas autorizado para acceder a esta ruta.")
         const decodedToken = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET, (err, decoded) => {
             if (err) throw new HttpError("Error en la verificacion de token: " + err.message, 401);
             return decoded
