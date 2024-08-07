@@ -1,0 +1,23 @@
+.inputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  box-sizing: border-box;
+  justify-self: center;
+  padding-left: 0.75rem;
+  border: 0.1vw solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+}
+
+.invalid {
+  color: #ff2f00;
+  border: 0.1vw solid #ff2f00;
+}

@@ -7,22 +7,28 @@ const cors = require('cors');
 const router = require('./routes/router');
 const errorHandler = require('./middleware/error-handler')
 
-const SUCCCESS_STR = require('./content/text/success/app.success')
-const ERROR_OBJ = require('./content/text/error/app.error');
+const { checkAuth } = require('./middleware/check-auth');
 
 const app = express();
 
-app.use(express.json(), cors(), cookieParser())
+const corsOptions = {
+    origin: [process.env.FRONTEND_URL],
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
+app.options('*', cors(corsOptions));
+app.use(express.json(), cors(corsOptions), cookieParser(), checkAuth)
 app.use('/api', router)
 app.use(errorHandler)
 
 const bootServer = async () => {
     try {
         await mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.rtdordu.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`);
-        app.listen(process.env.PORT || 3000, () => console.log(SUCCCESS_STR))
+        app.listen(process.env.PORT || 3000, () => console.log('server up!'))
     } catch (err) {
-        console.error(ERROR_OBJ.headline, err.message);
-        return {error: ERROR_OBJ.title, message: ERROR_OBJ.message}
+        console.error('Error starting server: ', err.message);
+        return {error: 'Server Error', message: 'Ha ocurrido un error al iniciar el servidor. Err: '+ err.message}
     }
 }
 

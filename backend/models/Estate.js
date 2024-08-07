@@ -6,7 +6,7 @@ const EstateSchema = new Schema({
     type: {type: String, required: true},
     rooms: {type: Number, required: true},
     location: {type: String, required: true},
-    second_location: {type: String},
+    secondLocation: {type: String},
     price: {type: Number, required: true},
     expenses: {type: Number, required: false},
     rented: {type: Boolean, required: true},

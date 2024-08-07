@@ -1,0 +1,50 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+.modal {
+  position: relative;
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 1vw;
+  overflow: hidden;
+  z-index: 1;
+  padding: 0 0;
+}
+
+.close{
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border: 0.1vw solid rgba(0, 0, 0, 0.4);
+  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #E0E0E0;
+  border: none;
+  border-radius: 100%;
+  transition: background-color 0.3s;
+}
+
+.closeContent{
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

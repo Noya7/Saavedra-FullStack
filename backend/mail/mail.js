@@ -1,4 +1,4 @@
-const HttpError = require('../models/http-error');
+const HttpError = require('../models/Http-Error');
 const transporter = require('./transporter')
 
 const mail = {
@@ -62,8 +62,7 @@ const mail = {
                             <p>Hemos recibido una solicitud para actualizar la contraseña de su cuenta. Por motivos de seguridad, le pedimos que haga clic en el siguiente enlace para completar el proceso de cambio de contraseña:</p>
                             <p><a href="${url}">Cambiar contraseña</a></p>
                             <p>Este enlace solo será válido por 15 minutos. Si no ha solicitado este cambio de contraseña, puede ignorar este correo electrónico.</p>
-                            <p>Gracias por su comprensión y por ayudarnos a mantener su cuenta segura.</p>
-                            <p>Atentamente,<br>El equipo de soporte</p>
+                            <p>Gracias por su comprensión y por ayudar a mantener su cuenta segura.</p>
                           </div>
                         </body>
                     </html>

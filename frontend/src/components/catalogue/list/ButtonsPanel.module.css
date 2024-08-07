@@ -1,0 +1,20 @@
+.buttons{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.buttons button{
+    font-size: 1rem;
+    padding: 0.25rem 0.75rem;
+}
+
+@media (max-width: 425px){
+    .buttons{
+        align-self: center;
+    }
+    .buttons button{
+        padding: 0.25rem 0.5rem;
+    }
+}

@@ -1,0 +1,111 @@
+.main{
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;  
+    background-color: #FFF;
+    box-shadow: 0px 14.23px 29.16px 0px rgba(0, 0, 0, 0.10);
+    font-family: 'DM Sans', sans-serif;
+}
+
+.title{
+    box-sizing: border-box;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.2rem;
+    max-width: 17rem;
+    text-decoration: none;
+    color: black;
+    line-height: 2rem;
+}
+
+.contact{
+    max-width: max-content;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex;
+}
+
+.contactSpan{
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.contactSpan svg{
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #a40000;
+}
+
+.controls{
+    box-sizing: border-box;
+    justify-self: flex-end;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    height: 100%;
+}
+
+.controls button{
+    padding: 0.5rem 2rem;
+    font-size: 1.4rem;
+    justify-self: flex-end;
+}
+
+@media (max-width: 764px){
+    .title{
+        font-size: 1.35rem;
+    }
+    .contact{
+        font-size: 1rem;
+        flex-direction: column;
+        gap: 0;
+        align-items: baseline;
+    }
+
+    .controls button{
+        padding: 0.25rem 1rem;
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 425px){
+    .main{
+        padding: 0;
+        flex-direction: column;
+        justify-content: none;
+    }
+
+    .title{
+        font-size: 1.5rem;
+        max-width: max-content;
+    }
+    .contact{
+        flex-direction: row;
+        gap: 1rem;
+        align-items: baseline;
+    }
+
+    .contactSpan p{
+        font-size: 0.85rem;
+    }
+
+    .contactSpan svg{
+        height: 1.25rem;
+        width: 1.25rem;
+        color: #a40000;
+    }
+
+    .controls button{
+        padding: 0.1rem 1.5rem;
+        font-size: 1.2rem;
+    }
+
+}

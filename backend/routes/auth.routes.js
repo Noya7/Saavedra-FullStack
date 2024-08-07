@@ -1,9 +1,9 @@
 const express = require('express');
 const {check} = require('express-validator');
 
-const {login, tokenLogin, logout, getResetTokenWithPass, getResetMail, verifyResetToken, resetPass, uniqueSignup} = require('../controllers/auth.controllers')
+const {login, tokenLogin, logout, getResetTokenWithPass, getResetMail, verifyResetToken, resetPass} = require('../controllers/auth.controllers')
 const {validationCheck} = require('../middleware/check-validation');
-const checkAuth = require('../middleware/check-auth');
+const {protectRoute} = require('../middleware/check-auth');
 
 const router = express.Router();
 
@@ -14,10 +14,8 @@ router.post('/login', validationCheck([
 
 // router.get('/uniqueSignup', uniqueSignup)
 
-router.get('/tokenLogin', tokenLogin);
-
 router.post('/reset-mail', validationCheck([
-    check('email').trim().isNumeric().isEmail()
+    check('email').trim().isEmail()
 ]), getResetMail)
 
 router.get('/verify-reset-token', validationCheck([
@@ -34,12 +32,10 @@ router.post('/reset-password', validationCheck([
     check('token').notEmpty()
 ]), resetPass)
 
-router.use(checkAuth)
+router.use(protectRoute(true))
+
+router.get('/tokenLogin', tokenLogin);
 
 router.get('/logout', logout)
-
-router.post('/resetWithPass', validationCheck([
-    check('password').notEmpty(),
-]), getResetTokenWithPass);
 
 module.exports = router;

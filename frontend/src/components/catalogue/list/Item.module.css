@@ -1,0 +1,75 @@
+.main{
+    box-sizing: border-box;
+    display: flex;
+    gap: 1rem;
+    font-family: "DM Sans", sans-serif;
+    padding: 1rem;
+    border-bottom: 0.1rem solid #CCCCCC;
+}
+
+.slider{
+    max-width: 45%;
+    height: 220px;
+    width: 425px;
+    overflow: hidden;
+}
+
+.info{
+    box-sizing: border-box;
+    display: flex;
+    gap: 0.5rem;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.info h1{
+    font-size: 1.35rem;
+}
+
+.location, .pricing{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.location h2{
+    color: #a1a1a1;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.location a{
+    color: #a30000;
+    font-size: 0.7rem;
+    text-decoration: none;
+}
+
+.location a:hover{
+    text-decoration: underline;
+}
+
+.pricing h3{
+    font-size: 1.25rem;
+}
+
+.pricing p{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px){
+    .main{
+        flex-direction: column;
+    }
+    .slider{
+        width: 100%;
+        flex-grow: 1;
+        max-width: none;
+    }
+}
+
+@media (max-width: 425px){
+    .pricing p{
+        font-size: 0.7rem;
+    }
+}

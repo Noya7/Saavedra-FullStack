@@ -1,0 +1,11 @@
+.main{
+    width: 55vw;
+    height: 65vh;
+}
+
+@media (max-width: 560px){
+    .main{
+        width: 85vw;
+        height: 65vh;
+    }
+}

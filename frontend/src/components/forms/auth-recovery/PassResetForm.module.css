@@ -1,0 +1,68 @@
+.main{
+    box-sizing: border-box;
+    width: 45vw;
+    display: flex;  
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.main h1{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.main ul{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1.5rem;
+}
+
+.input{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+.main input{
+    flex-grow: 1;
+    padding: 0.25rem 0.5rem;
+}
+
+.main button{
+    font-size: 1.2rem;
+    padding: 0.25rem 1rem;
+}
+
+@media (max-width: 768px){
+    .main{
+        max-width: 22rem;
+        width: 90vw;
+    }
+
+    .main h1{
+        font-size: 1.2rem;
+    }
+
+    .main p{
+        font-size: 0.8rem;
+    }
+
+    .input{
+        gap: 0.5rem;
+    }
+
+
+    .input input{
+        flex-grow: 1;
+        padding: 0.25rem 0.25rem;
+    }
+    
+    .input button{
+        font-size: 1rem;
+        padding: 0.25rem 1rem;
+    }
+
+}

@@ -1,0 +1,114 @@
+.main{
+    width: 80%;
+    flex-grow: 1;
+    max-height: 7rem;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF;
+    border-radius: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+.main input[type=text]{
+    max-width: 30rem;
+    min-width: 5rem;
+    width: 100%;
+    border-radius: 1.3rem;
+    background: #F4F4F4;
+    text-align: start;
+    border-style: none;
+}
+
+.main input[type=text], .options select, .main button{
+    height: 2rem;
+    padding: 0 1rem;
+    font-size: 1.3rem;
+}
+
+.options{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.options select{
+    box-sizing: border-box;
+    width: auto;
+    white-space: nowrap;
+    padding: 0 0rem;
+    border-radius: 1.3rem;
+    background: #F4F4F4;
+    text-align: center;
+    border-style: none;
+}
+
+.main input[type=text]:focus, .options select:focus{
+    outline: none;
+}
+
+@media (max-width: 768px){
+    .main{
+        flex-direction: column;
+        width: 85%;
+        padding: 0.25rem 1rem;
+        max-height: 7rem;
+        gap: 0.5rem;
+    }
+
+    .main input[type=text]{
+        max-width: 30rem;
+        width: 100%;
+        border-radius: 1.3rem;
+    }
+
+    .options{
+        justify-content: space-between;
+    }
+
+    .main input[type=text], .options select, .main button{
+        height: 1.5rem;
+        padding: 0 1.5rem;
+        font-size: 1rem;
+    }
+
+    .main button{
+        max-width: 30rem;
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 425px){
+    .main{
+        flex-grow: 1;
+        flex-direction: column;
+        max-width: 100%;
+        padding: 0.25rem 1rem;
+        max-height: 7rem;
+        gap: 0.5rem;
+    }
+
+    .main input[type=text]{
+        max-width: 30rem;
+        width: 100%;
+        border-radius: 1.3rem;
+    }
+
+    .main input[type=text], .options select, .main button{
+        height: 1.5rem;
+        padding: 0 1rem;
+        font-size: 1rem;
+    }
+
+    .options select{
+        padding: 0rem;
+    }
+
+    .main button{
+        width: 100%;
+    }
+
+}

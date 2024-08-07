@@ -1,5 +1,5 @@
 const {MongoServerError} = require('mongodb')
-const HttpError = require('../models/http-error')
+const HttpError = require('../models/Http-Error')
 
 const errorHandler = (err, req, res, next) => {
     console.log("error detected")

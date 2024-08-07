@@ -19,6 +19,10 @@ const uppercaseFirst = (string) => {
     return resultStr;
 }
 
+//tags sanitizer, creates an array with the tags provided:
+
+const tagSanitizer = (string) => string.split(', ');
+
 //***********VALIDATION***********
 
 //error check
@@ -47,4 +51,4 @@ const validationErrorCheck = (req, res, next) => {
 const validationCheck = (validations) => { return [...validations, validationErrorCheck]};
 
 
-module.exports = {validationCheck, uppercaseField, uppercaseFirst};
+module.exports = {validationCheck, uppercaseField, uppercaseFirst, tagSanitizer};

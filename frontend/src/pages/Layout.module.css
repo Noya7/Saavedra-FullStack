@@ -1,0 +1,9 @@
+.main{
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 12% 88%;
+    overflow-y: auto;
+    background-color: #E0E0E0;
+}
