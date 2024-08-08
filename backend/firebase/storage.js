@@ -1,6 +1,6 @@
 const {storage} = require('./firebase')
 const {v4} = require('uuid');
-const sharp = require('sharp')
+const jimp = require('jimp')
 const HttpError = require('../models/Http-Error')
 
 //profile image upload, takes an image for argument and uploads it.
@@ -13,12 +13,14 @@ const estateImageUpload = async (files, estateId) => {
         const uploadPromises = files.map((file) => {
             return new Promise(async (resolve, reject) => {
                 try {
-                    const optimizedBuffer = await sharp(file.buffer).resize(1024, 768).jpeg({ quality: 80 }).toBuffer();
+                    const imageFile = await jimp.read(file.buffer);
+                    imageFile.resize(1024, jimp.AUTO).quality(80);
+                    const buffer = await imageFile.getBufferAsync(jimp.MIME_JPEG);
                     const image = bucket.file(`estate_pictures/${estateId}/${v4()}`);
                     const stream = image.createWriteStream({
                         resumable: true,
                         validation: 'crc32c',
-                        metadata: { contentType: file.mimetype },
+                        metadata: { contentType: jimp.MIME_JPEG },
                     });
                     stream.on('error', err => {
                         reject(new HttpError('Ocurrió un error inesperado al subir la imagen. Error: ' + err.message, 500));
@@ -29,7 +31,7 @@ const estateImageUpload = async (files, estateId) => {
                         imageUrls.push(url);
                         resolve();
                     });
-                    stream.end(optimizedBuffer);
+                    stream.end(buffer);
                 } catch (err) {
                     reject(new HttpError('Ocurrió un error inesperado al procesar la imagen. Error: ' + err.message, 500));
                 }

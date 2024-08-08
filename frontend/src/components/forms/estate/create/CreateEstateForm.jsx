@@ -61,8 +61,8 @@ const CreateEstateForm = () => {
                 <TextInput value={editData?.secondLocation} notRequired={true} type='secondLocation' name='secondLocation' onValidation={valid => handleFieldValidation('secondLocation', valid)} placeholder='ubicación secundaria' />
                 <span className={classes.options}>
                     <select required={!editData} name='type'>
-                        <option>Casa</option>
-                        <option>Departamento</option>
+                        <option value='house'>Casa</option>
+                        <option value='apartament'>Departamento</option>
                     </select>
                     <select required={!editData} name='rooms'>
                         <option>1</option>

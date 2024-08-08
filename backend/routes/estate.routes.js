@@ -60,7 +60,11 @@ router.get('/get-estate', validationCheck([check('estateId').notEmpty().isMongoI
 router.patch('/edit-estate', upload.array('images'), validationCheck([
     check('estateId').notEmpty().isMongoId(),
     check('title').optional().isString().withMessage('El título debe ser una cadena de texto.'),
-    check('type').optional().isString().withMessage('El tipo debe ser una cadena de texto.'),
+    check('type')
+      .optional()
+      .notEmpty().withMessage('El tipo es requerido.')
+      .isString().withMessage('El tipo debe ser una cadena de texto.')
+      .isIn(['house', 'apartament']),
     check('rooms').optional().isInt({ min: 1 }).withMessage('El número de habitaciones debe ser un número entero positivo.'),
     check('location').optional().isString().withMessage('La ubicación debe ser una cadena de texto.'),
     check('second_location').optional().isString().withMessage('La segunda ubicación debe ser una cadena de texto.'),
