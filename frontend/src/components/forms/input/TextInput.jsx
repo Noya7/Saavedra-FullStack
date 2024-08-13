@@ -20,7 +20,7 @@ const validate = (value, type) => {
   }
 };
 
-const TextInput = ({ name, type, placeholder, onValidation, value, readOnly, notRequired }) => {
+const TextInput = ({ name, type, placeholder, onValidation, value, readOnly, notRequired, hidden }) => {
   const [fieldIsValid, setFieldIsValid] = useState(false);
   const [fieldWasTouched, setFieldWasTouched] = useState(false);
 
@@ -39,6 +39,7 @@ const TextInput = ({ name, type, placeholder, onValidation, value, readOnly, not
       onChange={changeHandler}
       defaultValue={value || ''}
       readOnly={readOnly}
+      hidden = {hidden}
     />
   );
 };

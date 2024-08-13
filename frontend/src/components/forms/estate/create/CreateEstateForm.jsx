@@ -25,12 +25,12 @@ const CreateEstateForm = () => {
 
     useEffect(() => {
         if (editData) {
-          setIsEditMode(true);
-          const initialValidation = {};
-          Object.keys(initialFields).forEach(key => {
-            initialValidation[key] = !!editData[key];
-          });
-          setFieldValidation(initialValidation);
+            setIsEditMode(true);
+            const initialValidation = {};
+            Object.keys(initialFields).forEach(key => {
+              initialValidation[key] = !!editData[key];
+            });
+            setFieldValidation(initialValidation);
         }
     }, [editData]);
 
