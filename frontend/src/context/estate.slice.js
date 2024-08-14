@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { archiveEstateAsync, deleteEstateAsync, getEstatesAsync, loadNextPageAsync } from "./estate.thunks";
+import { archiveEstateAsync, deleteEstateAsync, editEstateAsync, getEstatesAsync, loadNextPageAsync } from "./estate.thunks";
 
 const estateSlice = createSlice({
     name: 'estate',
@@ -27,6 +27,10 @@ const estateSlice = createSlice({
         builder.addCase(archiveEstateAsync.fulfilled, (state, action) => {
             const editedIndex = state.results.findIndex(estate => estate._id === action.payload.estate._id);
             state.results[editedIndex].rented = action.payload.estate.rented;
+        }),
+        builder.addCase(editEstateAsync.fulfilled, (state, action) => {
+            const editedIndex = state.results.findIndex(estate => estate._id === action.payload.estate._id);
+            state.results[editedIndex] = action.payload.estate;
         }),
         builder.addCase(deleteEstateAsync.fulfilled, (state, action) => {
             const deletedIndex = state.results.findIndex(estate => estate._id === action.payload.deletedEstate._id);

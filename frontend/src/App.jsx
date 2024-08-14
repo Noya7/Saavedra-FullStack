@@ -6,7 +6,6 @@ import { getResetMailAction, loginAction, resetPasswordAction, resetPasswordLoad
 import CreateEstatePage from './pages/estate/CreateEstatePage';
 import { createEstateAction, deleteEstateLoader, editEstateAction, editEstateLoader, getEstatesAction, getLocationLoader } from './pages/actions & loaders/estate';
 import DeleteEstatePage from './pages/estate/DeleteEstatePage';
-import EditEstatePage from './pages/estate/EditEstatePage';
 import MapPage from './pages/estate/MapPage';
 import ResetMailPage from './pages/auth/ResetMailPage';
 import PasswordResetPage from './pages/auth/PasswordResetPage';
@@ -20,9 +19,9 @@ const router = createBrowserRouter([
             {path: "/get-reset-mail", element: <ResetMailPage />, loader: unprotectedRouteLoader, action: getResetMailAction},
             {path: "/reset-password", element: <PasswordResetPage />, loader: resetPasswordLoader, action: resetPasswordAction},
             {path: "/create", element: <CreateEstatePage />, loader: protectedRouteLoader, action: createEstateAction },
-            {path: "/edit/:estateId", element: <EditEstatePage />, loader: editEstateLoader, action: editEstateAction},
+            {path: "/edit/:estateId", element: <CreateEstatePage />, loader: editEstateLoader, action: editEstateAction},
             {path: "/delete/:estateId", element: <DeleteEstatePage />, loader: deleteEstateLoader},
-            {path: "/map/:estateId", element: <MapPage />, loader: getLocationLoader}
+            {path: "/map/:estateId", element: <MapPage />, loader: getLocationLoader},
         ]}
     ]}
 ])

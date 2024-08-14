@@ -1,6 +1,6 @@
 const Estate = require("../models/Estate");
 const HttpError = require('../models/Http-Error')
-const { estateImageUpload, deleteImages } = require("../firebase/storage");
+const { estateImageUpload, deleteImages, deleteAllImages } = require("../firebase/storage");
 
 const createEstate = async (req, res, next) => {
     try {
@@ -72,10 +72,8 @@ const getLocationById = async (req, res, next) => {
 const editEstate = async (req, res, next) => {
     try {
         const {estateId} = req.query;
-        // Buscar propiedad existente
         const estate = await Estate.findById(estateId);
         if (!estate) throw new HttpError('Propiedad no encontrada.', 404);
-        // Actualizar los campos proporcionados
         let hasChanges = false;
         for (let property in req.body) {
             if (estate[property] != req.body[property]) {
@@ -84,12 +82,15 @@ const editEstate = async (req, res, next) => {
             }
         }
         if (!estate.secondLocation) estate.secondLocation = estate.location;
-        if (req.files.length) {
-            await deleteImages(estate.id);
-            const images = await estateImageUpload(req.files, estate.id);
-            estate.images = images;
+        if (req.body.deletedImages && req.body.deletedImages[0].trim().length){
+            await deleteImages(estateId, req.body.deletedImages);
+            estate.images = estate.images.filter(url => !req.body.deletedImages.includes(url));
+            hasChanges = true;
         }
-        // Guardar
+        if (req.files.length) {
+            const newImages = await estateImageUpload(req.files, estate.id);
+            estate.images.push(...newImages);
+        }
         hasChanges && await estate.save();
         return res.status(200).json({ message: hasChanges ? 'Propiedad actualizada correctamente.' : 'No se realizaron cambios en la propiedad.', estate });
     } catch (err) {
@@ -99,7 +100,7 @@ const editEstate = async (req, res, next) => {
 
 const deleteEstate = async (req, res, next) => {
     try {
-        await deleteImages(req.query.estateId);
+        await deleteAllImages(req.query.estateId);
         const deletedEstate = await Estate.findByIdAndDelete(req.query.estateId);
         return res.status(200).json({message: 'Propiedad eliminada exitosamente.', deletedEstate})
     } catch (err) {

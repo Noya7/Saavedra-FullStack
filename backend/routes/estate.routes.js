@@ -59,6 +59,7 @@ router.get('/get-estate', validationCheck([check('estateId').notEmpty().isMongoI
 
 router.patch('/edit-estate', upload.array('images'), validationCheck([
     check('estateId').notEmpty().isMongoId(),
+    check('deletedImages').optional().customSanitizer(tagSanitizer).isArray({min: 1}),
     check('title').optional().isString().withMessage('El título debe ser una cadena de texto.'),
     check('type')
       .optional()

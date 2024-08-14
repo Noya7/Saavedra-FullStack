@@ -18,8 +18,6 @@ export const createEstateAction = async ({request}) => {
 
 export const editEstateAction = async ({request, params}) => {   
     const formData = await request.formData();
-    const body={formData, estateId: params.estateId};
-    console.log(body)
     const data = await store.dispatch(editEstateAsync({formData, estateId: params.estateId}));
     return data;
 };

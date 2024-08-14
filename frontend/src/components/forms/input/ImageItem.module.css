@@ -1,0 +1,30 @@
+/* ImageItem.module.css */
+.imageContainer {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.removeIcon {
+    box-sizing: border-box;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 100%;
+    display: none;
+}
+
+.imageContainer:hover .removeIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,20 @@
+.main {
+    box-sizing: border-box;
+    flex-grow: 1;
+    border: 0.15rem solid #CCCCCC;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.main h2{
+    cursor: pointer;
+}
+
+.content {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.content.open {
+    margin-top: 10px;
+}

@@ -22,7 +22,23 @@ const estateImageUpload = async (files, estateId) => {
     }
 };
 
-const deleteImages = async (estateId) => {
+const deleteImages = async (estateId, imagesToDelete) => {
+    try {
+        const bucket = storage.bucket();
+        const files = await Promise.all(
+            imagesToDelete.map(imageUrl => {
+                const fileName = imageUrl.split('/').pop();
+                return bucket.file(`estate_pictures/${estateId}/${fileName}`);
+            })
+        );
+        await Promise.all(files.map(async file => await file.delete()));
+    } catch (err) {
+        console.error('Error deleting images:', err);
+        throw new Error(`Failed to delete images: ${err.message}`);
+    }
+};
+
+const deleteAllImages = async (estateId) => {
     try {
         const [files] = await storage.bucket().getFiles({prefix: `estate_pictures/${estateId}`});
         await Promise.all(files.map( async file => await file.delete() ));
@@ -31,7 +47,7 @@ const deleteImages = async (estateId) => {
     }
 };
 
-module.exports = {estateImageUpload, deleteImages}
+module.exports = {estateImageUpload, deleteImages, deleteAllImages}
 //     try {
 //         if (!files.length) throw new HttpError('No se proporcionó ningún archivo.', 400);
 //         const bucket = storage.bucket();

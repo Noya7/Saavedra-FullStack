@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import classes from './ImageInput.module.css';
+import ImageItem from './ImageItem';
 
 const MAX_IMAGES = 5;
 const MAX_WIDTH = 1024;
@@ -38,33 +39,36 @@ const processImage = (file) => {
     });
 };
 
-const ImageInput = ({ required }) => {
-    const [images, setImages] = useState([]);
+const ImageInput = ({ required, data = [], onImageDeletion }) => {
     const [processedImages, setProcessedImages] = useState([]);
+    const [serverImages, setServerImages] = useState(data);
+    const [deletedImages, setDeletedImages] = useState([]);
 
     const handleImageChange = async (e) => {
         if (e.target.files.length) {
             const files = Array.from(e.target.files).slice(0, MAX_IMAGES);
             const processed = await Promise.all(files.map(processImage));
-            setImages(processed.map(p => p.file));
-            setProcessedImages(processed.map(p => p.preview));
+            setProcessedImages(prev => [...prev, ...processed.map(p => p.preview)]);
         }
     };
 
-    useEffect(() => {
-        const updateFormData = () => {
-            const formData = new FormData();
-            images.forEach(file => {formData.append(`images`, file)});
-        };
-        updateFormData();
-    }, [images]);
+    const removeImage = (index) => {
+        setProcessedImages((prev) => prev.filter((x, i) => i !== index));
+    };
+
+    const removeServerImage = (url) => {
+        setServerImages((prev) => prev.filter((image) => image !== url));
+        setDeletedImages((prev) => [...prev, url]);
+    };
+
+    useEffect(() => {(deletedImages.length > 0) && onImageDeletion(deletedImages.join(', '))}, [deletedImages]);
 
     return (
         <div className={classes.main}>
             <div className={classes.selection}>
                 <label htmlFor='images'>Elige las imágenes (máximo {MAX_IMAGES}):</label>
                 <input 
-                    required={required} 
+                    required={required && serverImages.length === 0} 
                     type='file' 
                     name='images' 
                     id='images' 
@@ -74,9 +78,8 @@ const ImageInput = ({ required }) => {
                 />
             </div>
             <div className={classes.images}>
-                {processedImages.map((image, index) => (
-                    <img key={index} src={image} alt={`Selected ${index}`} className={classes.image} />
-                ))}
+                {serverImages.map((url, index) => (<ImageItem key={index} image={url} onRemove={()=>removeServerImage(url)} index={index} />))}
+                {processedImages.map((image, index) => (<ImageItem key={index + serverImages.length} image={image} onRemove={removeImage} index={index} />))}
             </div>
         </div>
     );
