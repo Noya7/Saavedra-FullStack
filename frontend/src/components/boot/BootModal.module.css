@@ -1,0 +1,121 @@
+.main{
+    box-sizing: border-box;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 500px;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.main h1{
+    font-weight: 400;
+    text-align: center;
+}
+
+.main p{
+    text-align: center;
+}
+
+.spinner {
+    font-size: 3rem;
+    color: #333;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.contact{
+    max-width: max-content;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex;
+}
+
+.contactSpan{
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.contactSpan svg{
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #a40000;
+}
+
+@media (max-width: 768px){
+    .main{
+        width: 425px;
+    }
+
+    .main h1{
+        font-size: 1.75rem;
+    }
+
+    .contact{
+        gap: 1fr;
+        align-items: baseline;
+    }
+    
+    .contactSpan{
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 425px){
+    .main{
+        width: 90vw;
+    }
+
+    .main h1{
+        font-size: 1.25rem;
+    }
+
+    .main p{
+        font-size: 0.9rem;
+    }
+
+    .contactSpan p{
+        font-size: 0.85rem;
+    }
+
+    .contactSpan svg{
+        height: 1rem;
+        width: 1rem;
+    }
+
+}
+
+@media (max-width: 375px){
+    .main{
+        width: 95vw;
+    }
+
+    .main p{
+        font-size: 0.9rem;
+    }
+
+    .contact{
+        gap: 0.5rem;
+    }
+
+    .contactSpan{
+        gap: 0.25rem;
+    }
+
+    .contactSpan p{
+        font-size: 0.75rem;
+    }
+
+}
