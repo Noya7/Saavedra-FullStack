@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import SearchBar from '../components/catalogue/searchBar/SearchBar';
 import List from '../components/catalogue/list/List';
 
@@ -7,13 +7,26 @@ import { toast } from 'react-toastify';
 import { useEffect, useRef, useState } from 'react';
 import BootModal from '../components/boot/BootModal';
 import Cookies from 'js-cookie'
+import { useDispatch, useSelector } from 'react-redux';
+import { tokenLoginAsync } from '../context/auth.thunks';
 
 const Home = () => {
     const [serverIsUp, setServerIsUp] = useState(true)
     const location = useLocation();
+    const dispatch = useDispatch();
     const queryParams = new URLSearchParams(location.search);
     const errorData = queryParams.get('err');
     const toastShown = useRef(false);
+    const tokenVerified = useSelector(state => state.auth.tokenVerified);
+
+    useEffect(()=>{
+        const tokenLoginLoader = async () => {
+            if (tokenVerified) return null;
+            await dispatch(tokenLoginAsync());
+            return;
+        }
+        tokenLoginLoader();
+    }, [])
 
     useEffect(()=> {(errorData && !toastShown.current) && toast.error(errorData) && (toastShown.current = true)}, [])
 

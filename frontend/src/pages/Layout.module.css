@@ -7,3 +7,9 @@
     overflow-y: auto;
     background-color: #E0E0E0;
 }
+
+@media (max-aspect-ratio: 1/1) {
+    .main {
+        grid-template-rows: 8% 92%;
+    }
+}

@@ -31,14 +31,6 @@ export const resetPasswordAction = async ({request, params}) => {
 
 //LOADERS:
 
-export const tokenLoginLoader = async () => {
-    const state = store.getState().auth;
-    if (state.tokenVerified) return null;
-    const data = await store.dispatch(tokenLoginAsync())
-    if(data.type === 'auth/tokenLogin/rejected') return null;
-    return data;
-}
-
 export const resetPasswordLoader = async ({request}) => {
     const url = new URL(request.url);
     const token = url.searchParams.get('token');

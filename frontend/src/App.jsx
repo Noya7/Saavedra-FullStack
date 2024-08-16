@@ -2,7 +2,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Layout from './pages/Layout'
 import Home from './pages/Home';
 import LoginPage from './pages/auth/LoginPage';
-import { getResetMailAction, loginAction, resetPasswordAction, resetPasswordLoader, tokenLoginLoader } from './pages/actions & loaders/auth';
+import { getResetMailAction, loginAction, resetPasswordAction, resetPasswordLoader } from './pages/actions & loaders/auth';
 import CreateEstatePage from './pages/estate/CreateEstatePage';
 import { createEstateAction, deleteEstateLoader, editEstateAction, editEstateLoader, getEstatesAction, getLocationLoader } from './pages/actions & loaders/estate';
 import DeleteEstatePage from './pages/estate/DeleteEstatePage';
@@ -14,7 +14,7 @@ import ErrorPage from './pages/error/ErrorPage';
 
 const router = createBrowserRouter([
     {path: '/', element: <Layout />, errorElement: <ErrorPage />, children: [
-        {path: '/', element: <Home />, loader: tokenLoginLoader, action: getEstatesAction, children: [
+        {path: '/', element: <Home />, action: getEstatesAction, children: [
             {path: "/login", element: <LoginPage />, loader: unprotectedRouteLoader, action: loginAction},
             {path: "/get-reset-mail", element: <ResetMailPage />, loader: unprotectedRouteLoader, action: getResetMailAction},
             {path: "/reset-password", element: <PasswordResetPage />, loader: resetPasswordLoader, action: resetPasswordAction},

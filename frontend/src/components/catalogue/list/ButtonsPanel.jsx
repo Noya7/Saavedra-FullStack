@@ -8,8 +8,7 @@ import classes from './ButtonsPanel.module.css'
 
 const getWhatsAppURL = (title, location) => {
     const message =
-    `Buenos dias Inmobiliaria Saavedra, te hablo para consultarte mas informacion acerca de la publicacion "${title}",
-    ubicada en ${location}.\nMuchas gracias!`
+    `Buenos dias Inmobiliaria Saavedra, te hablo para consultarte mas informacion acerca de la publicacion "${title}", ubicada en ${location}.\nMuchas gracias!`
     const encodedMessage = encodeURIComponent(message);
     return `https://api.whatsapp.com/send?phone=${import.meta.env.VITE_PHONE}&text=${encodedMessage}`;
 };

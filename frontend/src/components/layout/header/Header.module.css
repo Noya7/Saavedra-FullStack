@@ -76,11 +76,17 @@
     }
 }
 
+@media (max-width: 600px){
+    .title{
+        max-width: 15rem;
+    }
+}
+
 @media (max-width: 425px){
     .main{
         padding: 0;
         flex-direction: column;
-        justify-content: none;
+        justify-content: center;
     }
 
     .title{
