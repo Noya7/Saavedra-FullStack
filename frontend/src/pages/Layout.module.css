@@ -3,13 +3,7 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-rows: 12% 88%;
+    grid-template-rows: 5rem auto;
     overflow-y: auto;
     background-color: #E0E0E0;
-}
-
-@media (max-aspect-ratio: 1/1) {
-    .main {
-        grid-template-rows: 8% 92%;
-    }
 }
